@@ -1,0 +1,631 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Mahnoor!</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    background: #fff0f5;
+    color: #9b5475;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 35px 15px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.active {
+    display: flex;
+}
+
+h1 {
+    color: #d66b9b;
+    margin: 15px;
+}
+
+button {
+    border: none;
+    background: #ed9cbe;
+    color: white;
+    padding: 13px 27px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 15px;
+    box-shadow: 0 4px 12px #e9b4cc;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #d66b9b;
+    transform: scale(1.04);
+}
+
+input {
+    padding: 13px;
+    border: 2px solid #f2b8d0;
+    border-radius: 20px;
+    outline: none;
+    text-align: center;
+    font-size: 16px;
+    margin: 15px;
+}
+
+/* PASSWORD PAGE */
+#passwordPage {
+    background: linear-gradient(#fff5fa, #ffe1ed);
+}
+
+.cat-image {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 8px 5px #eac8d8);
+}
+
+.cat-name {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    color: #d47da4;
+    letter-spacing: 5px;
+    margin: 5px;
+}
+
+.cat-caption {
+    color: #bd829c;
+    font-size: 15px;
+    margin: 10px;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* CALENDAR */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 42px);
+    gap: 8px;
+    margin: 20px auto;
+    justify-content: center;
+}
+
+.calendar div {
+    background: white;
+    border-radius: 12px;
+    padding: 12px 0;
+    box-shadow: 0 2px 5px #f2c8d9;
+}
+
+.calendar .day {
+    background: #f8c8dc;
+    font-weight: bold;
+}
+
+.calendar .birthday {
+    background: #d66b9b;
+    color: white;
+    cursor: pointer;
+    animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    50% { transform: scale(1.12); }
+}
+
+/* BIRTHDAY PAGE */
+.balloon {
+    font-size: 55px;
+    display: inline-block;
+    animation: float 3s infinite;
+}
+
+.cake {
+    font-size: 100px;
+    margin: 15px;
+}
+
+.candles {
+    display: flex;
+    gap: 25px;
+    font-size: 35px;
+    justify-content: center;
+}
+
+.candle {
+    cursor: pointer;
+}
+
+.letter {
+    display: none;
+    max-width: 500px;
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    line-height: 1.8;
+    margin: 20px;
+    box-shadow: 0 5px 20px #edc2d4;
+}
+
+/* MEMORY WALL */
+.memory-wall {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 850px;
+    margin: 20px auto;
+}
+
+.polaroid {
+    background: white;
+    padding: 10px 10px 25px;
+    width: 145px;
+    box-shadow: 0 5px 15px #e5b9ce;
+    transform: rotate(-3deg);
+}
+
+.polaroid:nth-child(even) {
+    transform: rotate(4deg);
+}
+
+.polaroid img {
+    width: 100%;
+    height: 145px;
+    object-fit: cover;
+}
+
+/* SINGLE MEMORY */
+#singlePhoto {
+    width: min(85vw, 420px);
+    max-height: 65vh;
+    object-fit: contain;
+    border: 12px solid white;
+    border-bottom: 35px solid white;
+    box-shadow: 0 8px 25px #dba8c1;
+    border-radius: 5px;
+    animation: appear 0.7s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* FINAL PAGE */
+#finalPage {
+    background: linear-gradient(#ffe6f0, #fff5fa);
+}
+
+.final-title {
+    font-size: clamp(35px, 8vw, 65px);
+    color: #d65f95;
+    animation: pulse 1.5s infinite;
+}
+
+.heart {
+    font-size: 45px;
+    animation: float 2s infinite;
+}
+
+@media(max-width: 400px) {
+    .calendar {
+        grid-template-columns: repeat(7, 36px);
+        gap: 5px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="birthdaySong" loop>
+    <source src="birthday-song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- SCENE 1: PASSWORD PAGE -->
+<section id="passwordPage" class="page active">
+
+    <img src="cat.png"
+         class="cat-image"
+         alt="Cute white Persian cat">
+
+    <div class="cat-name">Mano</div>
+
+    <p class="cat-caption">
+        A little surprise is waiting for you ♡
+    </p>
+
+    <h1>Hey Birthday Girl! 🎀</h1>
+
+    <p>Enter your secret password</p>
+
+    <form id="passwordForm">
+        <input
+            type="password"
+            id="password"
+            placeholder="Your password..."
+            required
+        >
+
+        <br>
+
+        <button type="submit">
+            Open My Surprise ♡
+        </button>
+    </form>
+
+    <p id="wrongPassword" style="color:#d66b9b;"></p>
+
+</section>
+
+<!-- SCENE 2: CALENDAR -->
+<section id="calendarPage" class="page">
+
+    <h1>November 2026 🎀</h1>
+
+    <p>Something special is waiting for you...</p>
+
+    <div class="calendar">
+
+        <div class="day">Sun</div>
+        <div class="day">Mon</div>
+        <div class="day">Tue</div>
+        <div class="day">Wed</div>
+        <div class="day">Thu</div>
+        <div class="day">Fri</div>
+        <div class="day">Sat</div>
+
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+
+        <div class="birthday"
+             onclick="showPage('birthdayPage')">
+            5 🎂
+        </div>
+
+        <div>6</div>
+        <div>7</div>
+
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+        <div>13</div>
+        <div>14</div>
+
+        <div>15</div>
+        <div>16</div>
+        <div>17</div>
+        <div>18</div>
+        <div>19</div>
+        <div>20</div>
+        <div>21</div>
+
+        <div>22</div>
+        <div>23</div>
+        <div>24</div>
+        <div>25</div>
+        <div>26</div>
+        <div>27</div>
+        <div>28</div>
+
+        <div>29</div>
+        <div>30</div>
+
+    </div>
+
+    <p>Tap the pink date! 💗</p>
+
+</section>
+
+<!-- SCENE 3: BIRTHDAY CAKE -->
+<section id="birthdayPage" class="page">
+
+    <div>
+        <span class="balloon">🎈</span>
+        <span class="balloon">🎀</span>
+        <span class="balloon">🎈</span>
+    </div>
+
+    <h1>Happy Birthday Mahnoor! 💗</h1>
+
+    <p>Make a wish and blow out your candles!</p>
+
+    <div class="cake">🎂</div>
+
+    <div class="candles">
+
+        <span class="candle" onclick="blowCandle(this)">🕯️</span>
+
+        <span class="candle" onclick="blowCandle(this)">🕯️</span>
+
+        <span class="candle" onclick="blowCandle(this)">🕯️</span>
+
+    </div>
+
+    <p id="candleMessage">
+        Tap each candle to blow it out ♡
+    </p>
+
+    <div class="letter" id="birthdayLetter">
+
+        <h2>Dear Mahnoor 💌</h2>
+
+        <p>
+            Happy Birthday to the sweetest girl! 🎀
+
+            <br><br>
+
+            May your life always be filled with happiness,
+            love, beautiful memories and endless blessings.
+
+            <br><br>
+
+            May all your little dreams come true.
+            Keep smiling and shining always!
+
+            <br><br>
+
+            You deserve all the beautiful things in this world. 💗
+
+            <br><br>
+
+            Lots of love! ♡
+        </p>
+
+        <button onclick="showPage('memoryPage')">
+            Next Surprise →
+        </button>
+
+    </div>
+
+</section>
+
+<!-- SCENE 4: MEMORY WALL -->
+<section id="memoryPage" class="page">
+
+    <h1>Our Little Memory Wall 💗</h1>
+
+    <p>Some moments are simply unforgettable ♡</p>
+
+    <div class="memory-wall">
+
+        <div class="polaroid">
+            <img src="photo1.jpg" alt="Memory 1">
+        </div>
+
+        <div class="polaroid">
+            <img src="photo2.jpg" alt="Memory 2">
+        </div>
+
+        <div class="polaroid">
+            <img src="photo3.jpg" alt="Memory 3">
+        </div>
+
+        <div class="polaroid">
+            <img src="photo4.jpg" alt="Memory 4">
+        </div>
+
+        <div class="polaroid">
+            <img src="photo5.jpg" alt="Memory 5">
+        </div>
+
+        <div class="polaroid">
+            <img src="photo6.jpg" alt="Memory 6">
+        </div>
+
+    </div>
+
+    <button onclick="startMemories()">
+        See Memories One by One ♡
+    </button>
+
+</section>
+
+<!-- SCENE 5: INDIVIDUAL MEMORIES -->
+<section id="singleMemoryPage" class="page">
+
+    <h1>A Little Memory for You 💕</h1>
+
+    <img
+        id="singlePhoto"
+        src="photo1.jpg"
+        alt="Birthday memory"
+    >
+
+    <p id="photoNumber">Memory 1 of 6</p>
+
+    <button onclick="nextMemory()" id="photoNext">
+        Next Memory →
+    </button>
+
+</section>
+
+<!-- SCENE 6: FINAL BIRTHDAY PAGE -->
+<section id="finalPage" class="page">
+
+    <div class="heart">💗</div>
+
+    <h1 class="final-title">
+        HAPPY BIRTHDAY
+        <br>
+        Mahnoor!
+    </h1>
+
+    <p>
+        May your world always be as beautiful as your smile.
+    </p>
+
+    <div style="font-size:50px; margin:20px;">
+        🎂 🎀 💐
+    </div>
+
+    <p>With lots and lots of love! ♡</p>
+
+</section>
+
+<script>
+
+// PASSWORD
+const correctPassword = "Ma#No921";
+
+document.getElementById("passwordForm")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const enteredPassword =
+        document.getElementById("password").value;
+
+    if (enteredPassword === correctPassword) {
+
+        const song = document.getElementById("birthdaySong");
+
+        song.play().catch(() => {});
+
+        showPage("calendarPage");
+
+    } else {
+
+        document.getElementById("wrongPassword").textContent =
+            "Wrong password. Try again! 💗";
+
+    }
+
+});
+
+
+// PAGE NAVIGATION
+function showPage(pageId) {
+
+    document.querySelectorAll(".page").forEach(page => {
+
+        page.classList.remove("active");
+
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+}
+
+
+// CANDLES
+let blownCandles = 0;
+
+function blowCandle(candle) {
+
+    if (candle.textContent === "🕯️") {
+
+        candle.textContent = "💨";
+
+        blownCandles++;
+
+    }
+
+    if (blownCandles === 3) {
+
+        document.getElementById("candleMessage").textContent =
+            "Yay! All candles are blown! 💗";
+
+        document.getElementById("birthdayLetter").style.display =
+            "block";
+
+    }
+
+}
+
+
+// PHOTOS
+const photos = [
+    "photo1.jpg",
+    "photo2.jpg",
+    "photo3.jpg",
+    "photo4.jpg",
+    "photo5.jpg",
+    "photo6.jpg"
+];
+
+let currentPhoto = 0;
+
+
+// START MEMORIES
+function startMemories() {
+
+    currentPhoto = 0;
+
+    showPage("singleMemoryPage");
+
+    updatePhoto();
+
+}
+
+
+// UPDATE PHOTO
+function updatePhoto() {
+
+    const photo = document.getElementById("singlePhoto");
+
+    photo.src = photos[currentPhoto];
+
+    document.getElementById("photoNumber").textContent =
+        `Memory ${currentPhoto + 1} of ${photos.length}`;
+
+    document.getElementById("photoNext").textContent =
+        currentPhoto === photos.length - 1
+        ? "One Last Surprise ♡"
+        : "Next Memory →";
+
+}
+
+
+// NEXT MEMORY
+function nextMemory() {
+
+    if (currentPhoto < photos.length - 1) {
+
+        currentPhoto++;
+
+        updatePhoto();
+
+    } else {
+
+        showPage("finalPage");
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
+```
